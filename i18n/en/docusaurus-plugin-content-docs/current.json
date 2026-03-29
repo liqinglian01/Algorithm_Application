@@ -1,0 +1,10 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.4.1 模型仓库示例": {
+    "message": "4.1 模型仓库示例",
+    "description": "The label for category '4.1 模型仓库示例' in sidebar 'tutorialSidebar'"
+  }
+}
