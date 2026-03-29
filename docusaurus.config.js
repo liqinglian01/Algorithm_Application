@@ -8,19 +8,19 @@ import { themes as prismThemes } from "prism-react-renderer";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "RDK DOC",
+  title: "Algorithm Application DOC",
   // tagline: 'Dinosaurs are cool',
   favicon: "img/logo.png",
   // Set the production url of your site here
   url: "https://developer.d-robotics.cc",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: "/rdk_doc/",
+  baseUrl: "/Algorithm_Application/",
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "D-Robotics", // Usually your GitHub org/user name.
-  projectName: "rdk_doc", // Usually your repo name.
+  projectName: "Algorithm_Application", // Usually your repo name.
 
   // onBrokenLinks: 'throw',
 
@@ -36,7 +36,7 @@ const config = {
     },
     // Dify Chatbot Configuration
     {
-      src: "/rdk_doc/js/dify-config.js",
+      src: "/Algorithm_Application/js/dify-config.js",
     },
     {
       src: "https://rdk.d-robotics.cc/embed.min.js",
@@ -68,6 +68,18 @@ const config = {
           routeBasePath: "/", // 修改默认文档路径
           sidebarPath: "./sidebars.js",
           showLastUpdateTime: true,
+          includeCurrentVersion: true,
+          lastVersion: "current",
+          versions: {
+            current: {
+              label: "V3.0.0",
+              path: "",
+            },
+            "1.0.0": {
+              label: "1.0.0",
+              path: "1.0.0",
+            },
+          },
         },
         blog: { showReadingTime: true },
         pages: { exclude: ["/imager/**", "**/dl/**"] },
@@ -76,19 +88,19 @@ const config = {
       }),
     ],
   ],
-  // add by xgs for S100_doc 2025 年 4 月 21 日 16:34:51
-  plugins: [
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "docs_s",
-        path: "docs_s",
-        routeBasePath: "rdk_s",
-        sidebarPath: "./sidebars.js",
-        showLastUpdateTime: true,
-      },
-    ],
-  ],
+  // // add by xgs for S100_doc 2025 年 4 月 21 日 16:34:51
+  // plugins: [
+  //   [
+  //     "@docusaurus/plugin-content-docs",
+  //     {
+  //       id: "docs_s",
+  //       path: "docs_s",
+  //       routeBasePath: "rdk_s",
+  //       sidebarPath: "./sidebars.js",
+  //       showLastUpdateTime: true,
+  //     },
+  //   ],
+  // ],
   markdown: {
     mermaid: true,
   },
@@ -114,7 +126,14 @@ const config = {
             type: "docSidebar",
             sidebarId: "tutorialSidebar",
             position: "left",
-            label: "RDK X3 / X5",
+            label: "Algorithm Application",
+          },
+          {
+            type: "docsVersionDropdown",
+            docsPluginId: "default",
+            position: "left",
+            /** 用于 custom.css 中版本按钮样式（与 locale 下拉区分） */
+            className: "navbar-version-dropdown",
           },
           // add by xgs for S100_doc 2025 年 4 月 21 日 16:34:51 新增S100_doc npm install 去新增插件
           // {
@@ -123,13 +142,13 @@ const config = {
           //   position: 'left',
           //   // activeBaseRegex: '/docs_s/',
           // },
-          {
-            type: "docSidebar",
-            sidebarId: "tutorialSidebar",
-            docsPluginId: "docs_s",
-            position: "left",
-            label: "RDK S100",
-          },
+          // {
+          //   type: "docSidebar",
+          //   sidebarId: "tutorialSidebar",
+          //   docsPluginId: "docs_s",
+          //   position: "left",
+          //   label: "RDK S100",
+          // },
 
           {
             href: "https://developer.d-robotics.cc/",

@@ -56,9 +56,9 @@ npm run serve -- --host=10.64.62.34 --port=1688 --no-open
 
 This will start a static file server and provide the following links for access in the browser，The port number should be based on the actual port number:
 
-***English manual link***: http://localhost:3000/en/rdk_doc/
+***English manual link***: http://localhost:3000/en/Algorithm_application/
 
-***Chinese manual link***: http://localhost:3000/rdk_doc/
+***Chinese manual link***: http://localhost:3000/Algorithm_application/
 
 **Note:** Please ensure that Node.js version 18.0 or higher is required.
 
