@@ -12,7 +12,7 @@ const getCustomTitle = (permalink: string, locale: string): string | null => {
       { pattern: /^\/rdk_doc\/en\/rdk_s\/System_configuration$/, title: '2. System Configuration'},
       { pattern: /^\/rdk_doc\/en\/rdk_s\/01_hardware_introduction$/, title: '1.1 Hardware Introduction' },
       { pattern: /^\/rdk_doc\/en\/rdk_s\/Basic_Application$/, title: '3. Basic Application Development' },
-      { pattern: /^\/(rdk_doc|Algorithm_Application)\/en\/01_model_zoo\/model_zoo_intro$/, title: '4.1.1 ModelZoo Overview' },
+      { pattern: /^\/Algorithm_Application$/, title: '4. Algorithms' },
       { pattern: /^\/rdk_doc\/en\/rdk_s\/02_install_os$/, title: '1.2 Install Operating System' },
       { pattern: /^\/rdk_doc\/en\/rdk_s\/Quick_start\/hardware_introduction\/rdk_s100_mcu_port_expansion_board$/, title: '1.1.3 MCU Port Expansion Board' },
       { pattern: /^\/rdk_doc\/en\/rdk_s\/03_configuration_wizard$/, title: '1.3 Getting Started Configuration' },

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // @ts-check
 // `@type` JSDoc annotations allow editor autocompletion and type checking
 // (when paired with `@ts-check`).
@@ -29,6 +30,68 @@ const config = {
   onBrokenMarkdownLinks: "warn",
 
   //add vy xgs for analysis
+=======
+
+import { themes as prismThemes } from "prism-react-renderer";
+import fs from "fs";
+import path from "path";
+
+/**
+ * 📦 读取 versions.json（兼容首次无文件）
+ */
+let publishedVersions = [];
+
+try {
+  const file = path.resolve("./versions.json");
+  if (fs.existsSync(file)) {
+    publishedVersions = JSON.parse(fs.readFileSync(file, "utf-8"));
+  }
+} catch (e) {}
+
+/** 有已发布快照时：根路径为最新发布版；未发布文档在 /next。无发布记录时仍只有 current 占根路径。 */
+const docsVersions =
+  publishedVersions.length > 0
+    ? (() => {
+        const latestPub = publishedVersions[0];
+        const map = {
+          current: {
+            label: "Next",
+            path: "next",
+            banner: "none",
+          },
+        };
+        for (const v of publishedVersions) {
+          map[v] = {
+            label: `V${v}`,
+            path: v === latestPub ? "" : v,
+            banner: v === latestPub ? "none" : "unmaintained",
+          };
+        }
+        return map;
+      })()
+    : {
+        current: {
+          label: "Next",
+          path: "",
+          banner: "none",
+        },
+      };
+
+/** @type {import('@docusaurus/types').Config} */
+const config = {
+  title: "RDK X3 DOC",
+  favicon: "img/logo.png",
+
+  url: "https://developer.d-robotics.cc",
+  baseUrl: "/algorithm_application_doc/",
+
+  organizationName: "D-Robotics",
+  projectName: "algorithm_application_doc",
+
+  onBrokenLinks: "warn",
+  onBrokenMarkdownLinks: "warn",
+
+>>>>>>> b248151 (Init commit)
   scripts: [
     {
       src: "https://hm.baidu.com/hm.js?24dd63cad43b63889ea6bede5fd1ab9e",
@@ -36,7 +99,11 @@ const config = {
     },
     // Dify Chatbot Configuration
     {
+<<<<<<< HEAD
       src: "/Algorithm_Application/js/dify-config.js",
+=======
+      src: "/algorithm_application_doc/js/dify-config.js",
+>>>>>>> b248151 (Init commit)
     },
     {
       src: "https://rdk.d-robotics.cc/embed.min.js",
@@ -44,187 +111,147 @@ const config = {
       defer: true,
     },
   ],
-
-  // add by xgs for translate
+  
   i18n: {
     defaultLocale: "zh-Hans",
     locales: ["zh-Hans", "en"],
     localeConfigs: {
-      en: {
-        label: "EN",
-      },
-      "zh-Hans": {
-        label: "CN",
-      },
+      en: { label: "EN" },
+      "zh-Hans": { label: "CN" },
     },
   },
 
   presets: [
     [
       "classic",
-      /** @type {import('@docusaurus/preset-classic').Options} */
-      ({
+      {
         docs: {
-          routeBasePath: "/", // 修改默认文档路径
-          sidebarPath: "./sidebars.js",
+          routeBasePath: "/", // ✅ 必须（否则默认不显示文档）
+
+          sidebarPath: require.resolve("./sidebars.js"),
           showLastUpdateTime: true,
+
           includeCurrentVersion: true,
-          lastVersion: "current",
-          versions: {
-            current: {
-              label: "V3.0.0",
-              path: "",
-            },
-            "1.0.0": {
-              label: "1.0.0",
-              path: "1.0.0",
-            },
-          },
+
+          lastVersion:
+            publishedVersions.length > 0 ? publishedVersions[0] : "current",
+
+          versions: docsVersions,
         },
+
         blog: { showReadingTime: true },
         pages: { exclude: ["/imager/**", "**/dl/**"] },
         theme: { customCss: "./src/css/custom.css" },
         sitemap: { lastmod: "date" },
-      }),
+      },
     ],
   ],
-  // // add by xgs for S100_doc 2025 年 4 月 21 日 16:34:51
-  // plugins: [
-  //   [
-  //     "@docusaurus/plugin-content-docs",
-  //     {
-  //       id: "docs_s",
-  //       path: "docs_s",
-  //       routeBasePath: "rdk_s",
-  //       sidebarPath: "./sidebars.js",
-  //       showLastUpdateTime: true,
-  //     },
-  //   ],
-  // ],
+
   markdown: {
     mermaid: true,
   },
-  themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
-      // Replace with your project's social card
-      image: "img/docusaurus-social-card.jpg",
-      // ✅ 新增：支持 h2 ~ h5 add by xgs for table of contents
+
+  themeConfig: {
+    image: "img/docusaurus-social-card.jpg",
+
     tableOfContents: {
       minHeadingLevel: 2,
       maxHeadingLevel: 5,
     },
-      navbar: {
-        title: "D-Robotics",
-        logo: {
-          alt: "地瓜机器人社区 logo",
-          src: "img/logo.png",
-          href: "https://d-robotics.cc/", // 修改为文档根路径
+
+    navbar: {
+      title: "D-Robotics",
+      logo: {
+        alt: "logo",
+        src: "img/logo.png",
+        href: "https://d-robotics.cc/",
+      },
+      items: [
+        {
+          type: "docSidebar",
+          sidebarId: "tutorialSidebar",
+          position: "left",
+          label: "RDK X3",
         },
-        items: [
-          {
-            type: "docSidebar",
-            sidebarId: "tutorialSidebar",
-            position: "left",
-            label: "Algorithm Application",
-          },
-          {
-            type: "docsVersionDropdown",
-            docsPluginId: "default",
-            position: "left",
-            /** 用于 custom.css 中版本按钮样式（与 locale 下拉区分） */
-            className: "navbar-version-dropdown",
-          },
-          // add by xgs for S100_doc 2025 年 4 月 21 日 16:34:51 新增S100_doc npm install 去新增插件
-          // {
-          //   to: '/docs_s/',  // 与routeBasePath保持一致
-          //   label: 'RDK S Series',
-          //   position: 'left',
-          //   // activeBaseRegex: '/docs_s/',
-          // },
-          // {
-          //   type: "docSidebar",
-          //   sidebarId: "tutorialSidebar",
-          //   docsPluginId: "docs_s",
-          //   position: "left",
-          //   label: "RDK S100",
-          // },
+        {
+          type: "docsVersionDropdown",
+          position: "left",
+          // 仅列出已发布快照；未发布为 /next，不进下拉
+          ...(publishedVersions.length > 0 ? { versions: publishedVersions } : {}),
+        },
+        {
+          href: "https://developer.d-robotics.cc/",
+          label: "Community",
+          position: "right",
+        },
+        {
+          href: "https://github.com/D-Robotics",
+          label: "GitHub",
+          position: "right",
+        },
+        {
+          type: "localeDropdown",
+          position: "right",
+        },
+      ],
+    },
 
-          {
-            href: "https://developer.d-robotics.cc/",
-            label: "Community",
-            position: "left",
-          },
+    footer: {
+      style: "dark",
+      links: [
+        {
+          title: "友情链接",
+          items: [
+            {
+              label: "古月居",
+              href: "https://www.guyuehome.com/",
+            },
+          ],
+        },
+        {
+          title: "联系我们",
+          items: [
+            {
+              label: "GitHub",
+              href: "https://github.com/D-Robotics",
+            },
+            {
+              label: "BiLiBiLi",
+              href: (() => {
+                if (process.env.DOCUSAURUS_CURRENT_LOCALE === "en") {
+                  return "https://www.youtube.com/@D-Robotics";
+                }
+                return "https://space.bilibili.com/437998606";
+              })(),
+            },
+          ],
+        },
+      ],
+      copyright: `Copyright © ${new Date().getFullYear()} D-Robotics.`,
+    },
 
-          {
-            href: "https://github.com/D-Robotics",
-            label: "GitHub",
-            position: "right",
-          },
-          // add by xgs for translate show
-          {
-            type: "localeDropdown",
-            position: "right",
-          },
-        ],
-      },
-      footer: {
-        style: "dark",
-        links: [
-          {
-            title: "友情链接",
-            items: [
-              {
-                label: "古月居",
-                href: "https://www.guyuehome.com/",
-              },
-            ],
-          },
-          {
-            title: "联系我们",
-            items: [
-              {
-                label: "GitHub",
-                href: "https://github.com/D-Robotics",
-              },
-              {
-                label: "BiLiBiLi",
-                href: (() => {
-                  if (process.env.DOCUSAURUS_CURRENT_LOCALE === "en") {
-                    return "https://www.youtube.com/@D-Robotics";
-                  }
-                  return "https://space.bilibili.com/437998606";
-                })(),
-              },
-            ],
-          },
-        ],
-        copyright: `Copyright © ${new Date().getFullYear()} D-Robotics.`,
-      },
-      prism: {
-        theme: prismThemes.github,
-        darkTheme: prismThemes.dracula,
-      },
-    }),
+    prism: {
+      theme: prismThemes.github,
+      darkTheme: prismThemes.dracula,
+    },
+  },
+
   themes: [
     "@docusaurus/theme-mermaid",
     [
       require.resolve("@easyops-cn/docusaurus-search-local"),
       {
-        // 性能优化
-        hashed: true, // 启用长期缓存
-        language: ["en", "zh"], // 中英文支持
+        hashed: true,
+        language: ["en", "zh"],
         highlightSearchTermsOnTargetPage: true,
         explicitSearchResultPath: true,
-        docsRouteBasePath: ["/", "rdk_s"], // 支持多个文档路径
-        
-        // 优化索引大小和加载速度
+        docsRouteBasePath: ["/", "rdk_s"],
+
         indexDocs: true,
-        indexBlog: false, // 禁用博客索引
-        indexPages: false, // 禁用页面索引
-        
-        // 搜索行为优化
-        searchResultContextMaxLength: 50, // 减少上下文长度
+        indexBlog: false,
+        indexPages: false,
+
+        searchResultContextMaxLength: 50,
       },
     ],
   ],
