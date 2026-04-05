@@ -1,36 +1,3 @@
-<<<<<<< HEAD
-// @ts-check
-// `@type` JSDoc annotations allow editor autocompletion and type checking
-// (when paired with `@ts-check`).
-// There are various equivalent ways to declare your Docusaurus config.
-// See: https://docusaurus.io/docs/api/docusaurus-config
-
-import { themes as prismThemes } from "prism-react-renderer";
-
-/** @type {import('@docusaurus/types').Config} */
-const config = {
-  title: "Algorithm Application DOC",
-  // tagline: 'Dinosaurs are cool',
-  favicon: "img/logo.png",
-  // Set the production url of your site here
-  url: "https://developer.d-robotics.cc",
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: "/Algorithm_Application/",
-
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: "D-Robotics", // Usually your GitHub org/user name.
-  projectName: "Algorithm_Application", // Usually your repo name.
-
-  // onBrokenLinks: 'throw',
-
-  //add by xgs for build reduce bug
-  onBrokenLinks: "warn", // 或 'ignore'
-  onBrokenMarkdownLinks: "warn",
-
-  //add vy xgs for analysis
-=======
 
 import { themes as prismThemes } from "prism-react-renderer";
 import fs from "fs";
@@ -91,7 +58,6 @@ const config = {
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
 
->>>>>>> b248151 (Init commit)
   scripts: [
     {
       src: "https://hm.baidu.com/hm.js?24dd63cad43b63889ea6bede5fd1ab9e",
@@ -99,11 +65,7 @@ const config = {
     },
     // Dify Chatbot Configuration
     {
-<<<<<<< HEAD
-      src: "/Algorithm_Application/js/dify-config.js",
-=======
       src: "/algorithm_application_doc/js/dify-config.js",
->>>>>>> b248151 (Init commit)
     },
     {
       src: "https://rdk.d-robotics.cc/embed.min.js",
