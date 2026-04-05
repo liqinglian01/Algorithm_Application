@@ -1,9 +1,8 @@
 ---
 sidebar_position: 1
-slug: /
 ---
 
-# 1.1 ModelZoo概述
+# 4.1.1 ModelZoo概述-1.0.0
 
 ## 产品介绍
 
