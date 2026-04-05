@@ -133,7 +133,7 @@ const config = {
           type: "docSidebar",
           sidebarId: "tutorialSidebar",
           position: "left",
-          label: "RDK X3",
+          label: "Model Zoo",
         },
         {
           type: "docsVersionDropdown",
